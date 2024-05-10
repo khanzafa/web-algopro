@@ -31,10 +31,12 @@ class RegisterController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {            
         $user = new User();
-        $user->fullname = $request->fullname;
-        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->prodi = $request->prodi;
+        $user->nit = $request->nit;
+        $user->gender = $request->gender;
         $user->email = $request->email;
         $user->password = $request->password;
         $user->password = Hash::make($request->password);

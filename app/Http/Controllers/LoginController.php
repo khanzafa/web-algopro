@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Login;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -23,8 +24,7 @@ class LoginController extends Controller
     {
         // $types = ['Kredit', 'Debit'];
         // return view('login.create', compact('types'));
-        $user = User::all();
-        
+        $user = User::all();        
     }
 
     /**
@@ -32,12 +32,16 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->fullname = $request->fullname;
-        $user->username = $request->username;
-
-        $user->save();
-        return redirect()->route('expenses.index');
+        $email = $request->email;
+        $password = $request->password;
+        $user = User::where('email', $email)->first();
+        if ($user) {
+            if (Hash::check($password, $user->password)) {
+                return redirect()->route('dashboard.index');
+            }
+        }
+        return redirect()->route('login.index');
+        // return redirect()->route('expenses.index');
     }
 
     /**

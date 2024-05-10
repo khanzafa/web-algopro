@@ -11,4 +11,4 @@ Route::get('/', function () {
 
 Route::resource('/login', LoginController::class);
 Route::resource('/register', RegisterController::class);
-Route::resource('/user', UserController::class);
+Route::resource('/dashboard', UserController::class);
