@@ -8,11 +8,11 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
-    {        
+    {
         return view('login.index');
     }
 
@@ -23,8 +23,9 @@ class LoginController extends Controller
     {
         // $types = ['Kredit', 'Debit'];
         // return view('login.create', compact('types'));
-        return view('login.index');
-    }    
+        $user = User::all();
+        return view('login.index', ['user' => $user]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +35,7 @@ class LoginController extends Controller
         $user = new User();
         $user->fullname = $request->fullname;
         $user->username = $request->username;
-        
+
         $user->save();
         return redirect()->route('expenses.index');
     }
@@ -52,7 +53,7 @@ class LoginController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {   
+    {
         $expense = Login::find($id);
         return view('expenses.edit', ['expense' => $expense]);
     }
