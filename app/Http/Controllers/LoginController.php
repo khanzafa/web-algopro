@@ -24,7 +24,7 @@ class LoginController extends Controller
         // $types = ['Kredit', 'Debit'];
         // return view('login.create', compact('types'));
         $user = User::all();
-        return view('login.index', ['user' => $user]);
+        
     }
 
     /**
