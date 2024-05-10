@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 <div class="font-sans">
             <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
                 <div class="relative sm:max-w-sm w-full">
