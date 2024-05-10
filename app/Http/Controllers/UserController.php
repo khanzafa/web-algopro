@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -11,7 +12,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $users = User::all();
+        $users_total = User::all()->count();
+        
+        return view('dashboard.index', compact('users'));
     }
 
     /**
